@@ -2,6 +2,17 @@ import Head from "next/head";
 import type { NextPage } from "next";
 import Image from "next/image";
 
+const PROJECTS = [
+  {
+    title: "PriceShop E-commerse",
+    tags: ["NextJS", "Typescript", "Sequelize"],
+  },
+  {
+    title: "Calcultor",
+    tags: ["Vanilla JS"],
+  },
+];
+
 const Home: NextPage = () => {
   return (
     <>
@@ -20,9 +31,13 @@ const Home: NextPage = () => {
           <Header>Portfolio</Header>
 
           <div className="flex gap-8 overflow-x-auto p-10">
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
+            {PROJECTS.map((item) => (
+              <ProjectCard
+                key={item.title}
+                title={item.title}
+                tags={item.tags}
+              />
+            ))}
           </div>
         </section>
 
@@ -40,31 +55,34 @@ const Header = ({ children }: { children: string }) => (
   </header>
 );
 
-const ProjectCard = () => (
-  <div className="max-w-sm rounded overflow-hidden shadow-lg">
-    <Image
-      src="/img/card-top.jpg"
-      alt="Sunset in the mountains"
-      layout="fill"
-    />
+const ProjectCard = ({
+  image = "/statics/default.png",
+  title,
+  description,
+  tags,
+}: {
+  title: string;
+  description?: string;
+  tags?: string[];
+  image?: string;
+}) => (
+  <div className="max-w-sm min-w-[400px]  rounded overflow-hidden shadow-lg">
+    <div className="w-full h-[200px]">
+      <Image src={image} alt="Project" width="100%" height="100%" />
+    </div>
     <div className="px-6 py-4">
-      <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-      <p className="text-gray-700 text-base">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-        quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-        nihil.
-      </p>
+      <div className="font-bold text-xl mb-2">{title}</div>
+      <div>{description}</div>
     </div>
     <div className="px-6 pt-4 pb-2">
-      <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-        #photography
-      </span>
-      <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-        #travel
-      </span>
-      <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-        #winter
-      </span>
+      {tags?.map((tag) => (
+        <span
+          key={tag}
+          className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+        >
+          {tag}
+        </span>
+      ))}
     </div>
   </div>
 );
