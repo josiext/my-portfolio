@@ -2,10 +2,13 @@ import Head from "next/head";
 import type { NextPage } from "next";
 import Image from "next/image";
 
+import Linkedin from "icons/Linkedin";
+import Github from "icons/Github";
+
 const PROJECTS = [
   {
     title: "PriceShop E-commerse",
-    tags: ["NextJS", "Typescript", "Sequelize"],
+    tags: ["Typescript", "React", "NextJS", "Prisma", "PostgreSQL"],
   },
   {
     title: "Calcultor",
@@ -24,7 +27,12 @@ const Home: NextPage = () => {
       <main className="min-h-screen">
         <header className="bg-slate-100 grid place-content-center min-h-screen">
           <h1 className="text-5xl font-semibold">José Núñez Riveros</h1>
-          <h2>Full-Stack developer</h2>
+          <h2>Tech Leader & Full-Stack developer in Typescript.</h2>
+
+          <div className="flex gap-2">
+            <Linkedin size="35" />
+            <Github size="35" />
+          </div>
         </header>
 
         <section className="min-h-screen">
@@ -43,6 +51,10 @@ const Home: NextPage = () => {
 
         <section className="min-h-screen">
           <Header>Contact me!</Header>
+          <div className="flex gap-2 w-full justify-center mt-20">
+            <Linkedin size="35" />
+            <Github size="35" />
+          </div>
         </section>
       </main>
     </>
